@@ -12,15 +12,15 @@ app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req,res) {res.sendFile(absolutePath);});
 
 
-var response = "";
-app.get("/json", (req, res) => {
-  if (process.env.MESSAGE_STYLE == "uppercase") {
-    response = "Hello json".toUpperCase();
-  } else {
-    response = "Hello json";
-  }
-  res.json({ message: response });
-});
+app.use('/json', (req, res) => {
+	let response = "Hello json";
+
+	if(process.env.MESSAGE_STYLE === 'uppercase') {
+		return res.json({message:response.toUpperCase()})
+	} else {
+  	return res.json({message:response})
+	}
+})
 
 
 
