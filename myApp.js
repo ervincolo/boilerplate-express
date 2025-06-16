@@ -9,7 +9,7 @@ app.get('/', function(req,res) {res.sendFile(absolutePath);});
 app.use('/public', express.static(__dirname + '/public'));
 
 
-app.get('/json', (req, res) => {
+app.use('/json', (req, res) => {
 	let response = "Hello json";
 	if(process.env.MESSAGE_STYLE === 'uppercase') {
 		return res.json({message:response.toUpperCase()})
@@ -17,7 +17,7 @@ app.get('/json', (req, res) => {
   	return res.json({message:response})
 	}
 })
-console.log(process.env.MESSAGE_STYLE);
+
 
 
 
