@@ -7,20 +7,22 @@ console.log('Hello World');
 
 //app.get('/', function(req,res){res.send('Hello Express');});
 const absolutePath = __dirname + '/views/index.html';
+app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', function(req,res) {
-    res.sendFile(absolutePath);
+app.get('/', function(req,res) {res.sendFile(absolutePath);});
+
+
+var response = "";
+app.get("/json", (req, res) => {
+  if (process.env.MESSAGE_STYLE == "uppercase") {
+    response = "Hello json".toUpperCase();
+  } else {
+    response = "Hello json";
+  }
+  res.json({ message: response });
 });
 
-app.get("/json", (req, res) => {
-    const message =
-      process.env.MESSAGE_STYLE === "uppercase"
-        ? "HELLO JSON"
-        : "Hello json";
-    res.json({ message });
-  });
 
-app.use('/public', express.static(__dirname + '/public'));
 
 
 
