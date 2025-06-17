@@ -8,18 +8,16 @@ app.use((req, res, next) => {
      next();
 });
 
-function getTheCurrTime() {
-    //return new Date().toString();
-    const time = new Date().toString();
-    return time;
-}
-app.get('/now',function(req,res,next) {
-    req.time = getTheCurrTime();
-    next();
-}),function(req, res) {
-    res.send({ time: req.time })
-}
-   
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString(); // middleware: dodajemo vrijeme
+    next();                            // idemo dalje na handler
+  }, (req, res) => {
+    res.send({ time: req.time });     // handler: vraćamo JSON
+  });
+
+
+
+
 
 //app.get('/', function(req,res){res.send('Hello Express');});
 const absolutePath = __dirname + '/views/index.html';
