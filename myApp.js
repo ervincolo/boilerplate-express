@@ -8,6 +8,19 @@ app.use((req, res, next) => {
      next();
 });
 
+function getTheCurrTime() {
+    //return new Date().toString();
+    const time = new Date().toString();
+    return time;
+}
+app.get('/now',function(req,res,next) {
+    req.time = getTheCurrTime();
+    next();
+}),function(req, res) {
+    res.send({ time: req.time })
+}
+   
+
 //app.get('/', function(req,res){res.send('Hello Express');});
 const absolutePath = __dirname + '/views/index.html';
 app.get('/', function(req,res) {res.sendFile(absolutePath);});
