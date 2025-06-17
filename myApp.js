@@ -15,6 +15,12 @@ app.get('/now', (req, res, next) => {
     res.send({ time: req.time });     // handler: vraćamo JSON
   });
 
+app.get('/name',(req,res) => {
+    const first = req.query.first;
+    const last = req.query.last;
+    res.send({name: `${first} ${last}`});
+}) 
+
 
 app.get('/:word/echo', (req,res) => {
     const word = req.params.word;
