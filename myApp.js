@@ -16,7 +16,10 @@ app.get('/now', (req, res, next) => {
   });
 
 
-
+app.get('/:word/echo', (req,res) => {
+    const word = req.params.word;
+    res.send({echo: word});
+})
 
 
 //app.get('/', function(req,res){res.send('Hello Express');});
