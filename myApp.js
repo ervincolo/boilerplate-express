@@ -1,8 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-
 const bodyParser = require('body-parser');
+
+app.post('/name', (req,res) => {
+    const firstName = req.body.first;
+    const lastName = req.body.last;
+    res.json({name: `${firstName} ${lastName}`});
+})
 
 app.use(bodyParser.urlencoded({extended: false}));
 
